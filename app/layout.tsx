@@ -6,6 +6,7 @@ import LocaleProvider from "@/components/LocaleProvider";
 import LanguageToggle from "@/components/LanguageToggle";
 import { CartProvider } from "@/components/CartProvider";
 import { ToastProvider } from "@/components/ToastProvider";
+import { AuthProvider } from "@/components/AuthProvider";
 
 export const metadata: Metadata = {
   formatDetection: { telephone: false, date: false, email: false, address: false },
@@ -29,14 +30,16 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <LocaleProvider>
-          <CartProvider>
-            <ToastProvider>
-              <Navbar />
-              <main>{children}</main>
-              <Footer />
-              <LanguageToggle />
-            </ToastProvider>
-          </CartProvider>
+          <AuthProvider>
+            <CartProvider>
+              <ToastProvider>
+                <Navbar />
+                <main>{children}</main>
+                <Footer />
+                <LanguageToggle />
+              </ToastProvider>
+            </CartProvider>
+          </AuthProvider>
         </LocaleProvider>
       </body>
     </html>
