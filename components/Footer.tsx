@@ -72,7 +72,7 @@ export default function Footer() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-60px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8"
         >
           {/* Brand column */}
           <motion.div variants={staggerItem} className="lg:col-span-2">
@@ -99,8 +99,7 @@ export default function Footer() {
                 />
                 <button
                   type="submit"
-                  className="px-3 py-2 bg-[var(--primary)] text-[var(--foreground)] rounded-[var(--radius)] text-sm font-semibold hover:bg-[var(--primary-hover)] transition-colors flex-shrink-0"
-                  aria-label={t("footer.subscribe")}
+                  className="px-3 py-2 bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-[var(--foreground)] text-sm font-semibold rounded-[var(--radius)] transition-colors flex-shrink-0"
                 >
                   <Mail size={16} />
                 </button>
@@ -108,76 +107,74 @@ export default function Footer() {
             </div>
           </motion.div>
 
-          {/* Shop links */}
+          {/* Shop column */}
           <motion.div variants={staggerItem}>
-            <h3 className="font-semibold text-sm mb-3 text-white">{t("footer.shopTitle")}</h3>
-            <ul className="flex flex-col gap-2">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-white/90 mb-4">
+              {t("footer.shopTitle")}
+            </h3>
+            <ul className="space-y-2">
               {footerLinks.shop.map((link) => (
                 <li key={link.href}>{renderLink(link.href, link.label)}</li>
               ))}
             </ul>
           </motion.div>
 
-          {/* Account links */}
+          {/* Account column */}
           <motion.div variants={staggerItem}>
-            <h3 className="font-semibold text-sm mb-3 text-white">{t("footer.accountTitle")}</h3>
-            <ul className="flex flex-col gap-2">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-white/90 mb-4">
+              {t("footer.accountTitle")}
+            </h3>
+            <ul className="space-y-2">
               {footerLinks.account.map((link) => (
                 <li key={link.href}>{renderLink(link.href, link.label)}</li>
               ))}
             </ul>
           </motion.div>
 
-          {/* Help links */}
+          {/* Help column */}
           <motion.div variants={staggerItem}>
-            <h3 className="font-semibold text-sm mb-3 text-white">{t("footer.helpTitle")}</h3>
-            <ul className="flex flex-col gap-2">
+            <h3 className="text-sm font-bold uppercase tracking-wider text-white/90 mb-4">
+              {t("footer.helpTitle")}
+            </h3>
+            <ul className="space-y-2">
               {footerLinks.help.map((link) => (
                 <li key={link.href}>{renderLink(link.href, link.label)}</li>
               ))}
             </ul>
-            {/* Social */}
-            <div className="mt-6">
-              <p className="text-sm font-semibold mb-3">{t("footer.followUs")}</p>
-              <div className="flex gap-3">
-                {[
-                  { icon: Facebook, label: "Facebook" },
-                  { icon: Twitter, label: "Twitter" },
-                  { icon: Linkedin, label: "LinkedIn" },
-                ].map(({ icon: Icon, label }) => (
-                  <a
-                    key={label}
-                    href="#"
-                    aria-label={label}
-                    className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-[var(--primary)] hover:text-[var(--foreground)] transition-colors"
-                  >
-                    <Icon size={14} />
-                  </a>
-                ))}
-              </div>
-            </div>
+          </motion.div>
+
+          {/* Company column — new */}
+          <motion.div variants={staggerItem}>
+            <h3 className="text-sm font-bold uppercase tracking-wider text-white/90 mb-4">
+              Company
+            </h3>
+            <ul className="space-y-2">
+              {[
+                { label: "About BazaarX", href: "/about" },
+                { label: "Contact & Support", href: "/contact" },
+                { label: "Deals & Offers", href: "/deals" },
+              ].map((link) => (
+                <li key={link.href}>{renderLink(link.href, link.label)}</li>
+              ))}
+            </ul>
           </motion.div>
         </motion.div>
-      </div>
 
-      {/* Bottom bar */}
-      <div className="border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+        {/* Bottom bar */}
+        <div className="mt-10 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-white/50">
-            {t("footer.copyright", { year: "2024", brand: APP_NAME })}
+            &copy; {new Date().getFullYear()} {APP_NAME}. {t("footer.rights")}
           </p>
           <div className="flex items-center gap-4">
-            <span className="text-xs text-white/50">{t("footer.paymentMethods")}</span>
-            <div className="flex gap-2">
-              {["Visa", "MC", "Amex", "PayPal"].map((card) => (
-                <span
-                  key={card}
-                  className="text-[10px] bg-white/10 px-1.5 py-0.5 rounded text-white/70"
-                >
-                  {card}
-                </span>
-              ))}
-            </div>
+            <Link href="/about" className="text-xs text-white/50 hover:text-[var(--primary)] transition-colors">
+              About
+            </Link>
+            <Link href="/contact" className="text-xs text-white/50 hover:text-[var(--primary)] transition-colors">
+              Contact
+            </Link>
+            <Link href="/deals" className="text-xs text-white/50 hover:text-[var(--primary)] transition-colors">
+              Deals
+            </Link>
           </div>
         </div>
       </div>
